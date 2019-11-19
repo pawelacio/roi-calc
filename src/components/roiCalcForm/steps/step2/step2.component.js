@@ -25,15 +25,10 @@ class Step2 extends React.Component {
           LIVE PPV EVENT ROI CALCULATOR
         </Title>
         <Text>
-          Working with a Live PPV specialist can save you a lot of time and development costs.
+          Working with a Live PPV specialist can boost your conversion rate and ultimately your ROI.
         </Text>
         <Text>
-          When you are building your monetization platform, you consider the
-          costs of design, streaming, along with landing page and e-commerce 
-          checkout development.
-        </Text>
-        <Text>
-          What level of streaming quality are you aiming for?
+          How many tickets do you estimate to sell?
         </Text>
         <Button
           onClick={ () => onNextStep() }
