@@ -25,3 +25,8 @@ export const Text = styled.div`
   color: #FFFFFF;
   margin: 10px 0;
 `;
+
+export const RadioList = styled.div`
+  width: 100px;
+  margin: 10px auto;
+`;
