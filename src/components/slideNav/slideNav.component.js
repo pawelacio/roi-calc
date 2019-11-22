@@ -11,7 +11,7 @@ class SlideNav extends React.Component {
     let bars = [];
     for(let i = 0; i < count; i++) {
       bars.push(
-        <NavBar active={ i < active }/>
+        <NavBar key={ `nav-bar-${ i }` } active={ i < active }/>
       )
     }
     return bars;

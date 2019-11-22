@@ -1,5 +1,6 @@
 import React from 'react';
 import SlideNav from '../../../slideNav/slideNav.component';
+import BackButton from '../../../backButton/backButton.component';
 import { Button } from '../../../button/button.styled';
 
 import {
@@ -14,6 +15,7 @@ class Step2 extends React.Component {
     const {
       currentStep,
       onNextStep,
+      onPrevStep,
     } = this.props;
 
     if (currentStep !== 2)
@@ -36,6 +38,12 @@ class Step2 extends React.Component {
         >
           Next Question
         </Button>
+        <BackButton
+          onClick={ () => onPrevStep() }
+          center
+        >
+          BACK
+        </BackButton>
         <SlideNav active={ currentStep } stepsNum="3" />
       </StepWrap>
     )

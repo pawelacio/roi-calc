@@ -33,6 +33,7 @@ class RoiCalcForm extends React.Component {
   }
 
   handlePrevStep = () => {
+    console.log('prev');
     const prevStep = this.state.currentStep - 1;
     this.setState({
       currentStep: prevStep,
