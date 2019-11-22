@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StepWrap = styled.div`
   height: 100%;
@@ -25,6 +25,14 @@ export const Text = styled.div`
   text-align: center;
   color: #FFFFFF;
   margin: 10px 0;
+
+  ${ props => props.highlighted && css `
+    font-weight: 700;
+  `}
+
+  ${ props => props.small && css`
+    font-size: 16px;
+  `}
 `;
 
 export const InputWrap = styled.div`

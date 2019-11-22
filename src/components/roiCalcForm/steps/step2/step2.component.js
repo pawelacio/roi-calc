@@ -1,12 +1,14 @@
 import React from 'react';
 import SlideNav from '../../../slideNav/slideNav.component';
 import BackButton from '../../../backButton/backButton.component';
+import Input from '../../../input/input.component';
 import { Button } from '../../../button/button.styled';
 
 import {
   StepWrap,
   Title,
   Text,
+  InputWrap,
 } from './step2.styled';
 
 class Step2 extends React.Component {
@@ -32,6 +34,12 @@ class Step2 extends React.Component {
         <Text>
           How many tickets do you estimate to sell?
         </Text>
+        <InputWrap>
+          <Input
+            type="number"
+            placeholder="15,000"
+          />
+        </InputWrap>
         <Button
           onClick={ () => onNextStep() }
           center

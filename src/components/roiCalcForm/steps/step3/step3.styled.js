@@ -5,6 +5,7 @@ export const StepWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 `;
 
 export const Title = styled.h1`
@@ -24,4 +25,8 @@ export const Text = styled.div`
   text-align: center;
   color: #FFFFFF;
   margin: 10px 0;
+`;
+
+export const InputWrap = styled.div`
+  margin: 20px 0;
 `;
