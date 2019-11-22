@@ -6,7 +6,9 @@ import {
   StepWrap,
   Title,
   Text,
+  RadioList,
 } from './step1.styled';
+import Radio from '../../../radio/radio.component';
 
 class Step1 extends React.Component {
 
@@ -35,6 +37,11 @@ class Step1 extends React.Component {
         <Text>
           What level of streaming quality are you aiming for?
         </Text>
+        <RadioList>
+          <Radio text={ 'High' } name="streaming-level" />
+          <Radio text={ 'Mid' } name="streaming-level" />
+          <Radio text={ 'Entry' } name="streaming-level" />
+        </RadioList>
         <Button
           onClick={ () => onNextStep() }
           center
