@@ -5,7 +5,7 @@ import Welcome from './steps/welcome/welcome.component';
 import Step1 from './steps/step1/step1.component';
 import Step2 from './steps/step2/step2.component';
 import Step3 from './steps/step3/step3.component';
-import Step4 from './steps/step4/step4.component';
+import Result from './steps/result/result.component';
 
 
 import {
@@ -21,7 +21,7 @@ class RoiCalcForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStep: 0,
+      currentStep: 2,
     }
   }
 
@@ -37,6 +37,12 @@ class RoiCalcForm extends React.Component {
     const prevStep = this.state.currentStep - 1;
     this.setState({
       currentStep: prevStep,
+    });
+  }
+
+  handleStart = () => {
+    this.setState({
+      currentStep: 1,
     });
   }
 
@@ -68,10 +74,11 @@ class RoiCalcForm extends React.Component {
               onNextStep={ this.handleNextStep }
               onPrevStep={ this.handlePrevStep }
             />
-            <Step4
+            <Result
               currentStep={ currentStep }
               onNextStep={ this.handleNextStep }
               onPrevStep={ this.handlePrevStep }
+              onStartAgain={ this.handleStart }
             />
           </FormWrap>
         </FormBackground>

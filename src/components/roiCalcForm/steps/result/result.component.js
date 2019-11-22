@@ -9,17 +9,18 @@ import {
   Title,
   Text,
   InputWrap,
-} from './step3.styled';
-class Step3 extends React.Component {
+} from './result.styled';
+class Result extends React.Component {
 
   render() {
     const {
       currentStep,
       onNextStep,
       onPrevStep,
+      onStartAgain,
     } = this.props;
 
-    if (currentStep !== 3)
+    if (currentStep !== 4)
       return null;
 
     return(
@@ -27,36 +28,36 @@ class Step3 extends React.Component {
         <Title>
           LIVE PPV EVENT ROI CALCULATOR
         </Title>
-        <Text>
-          Working with a Live PPV specialist can help you define your best pricing strategy.
+        <Text highlighted>
+          Based on your entries, your ROI is negative.
         </Text>
         <Text>
-        How much do you plan to charge per ticket for your Live PPV event?
+          IMPROVE YOUR RESULTS WITH CLEENG!
         </Text>
-        <InputWrap>
-          <Input
-            type="number"
-            placeholder="19.00"
-            align="right"
-            unit="€"
-          />
-        </InputWrap>
+        <Text small>
+          Do you want to understand the logic behind this calculation? Grab your results and we will explain you everything about conversion rates, customer care and operation fees.
+        </Text>
         <Button
           onClick={ () => onNextStep() }
           center
         >
-          See the results
+          Find Out Now
         </Button>
+        <BackButton
+          onClick={ () => onStartAgain() }
+          center
+        >
+          START AGAIN
+        </BackButton>
         <BackButton
           onClick={ () => onPrevStep() }
           center
         >
           BACK
         </BackButton>
-        <SlideNav active={ currentStep } stepsNum="3" />
       </StepWrap>
     )
   }
 }
 
-export default Step3;
+export default Result;
