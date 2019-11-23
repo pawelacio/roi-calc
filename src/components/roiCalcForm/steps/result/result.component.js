@@ -1,7 +1,7 @@
 import React from 'react';
 import BackButton from '../../../backButton/backButton.component';
+import IconButton from '../../../iconButton/iconButton.component';
 import Table from '../../../table/table.component';
-import { Button } from '../../../button/button.styled';
 
 import {
   StepWrap,
@@ -51,12 +51,13 @@ class Result extends React.Component {
             Do you want to understand the logic behind this calculation? Grab your results and we will explain you everything about conversion rates, customer care and operation fees.
           </Text>
         </FieldWrap>
-        <Button
+        <IconButton
           onClick={ () => onNextStep() }
+          icon="arrow-right"
           center
         >
           Find Out Now
-        </Button>
+        </IconButton>
         <BackButton
           onClick={ () => onStartAgain() }
           center

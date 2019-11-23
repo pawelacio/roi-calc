@@ -2,7 +2,7 @@ import React from 'react';
 import SlideNav from '../../../slideNav/slideNav.component';
 import BackButton from '../../../backButton/backButton.component';
 import Input from '../../../input/input.component';
-import { Button } from '../../../button/button.styled';
+import IconButton from '../../../iconButton/iconButton.component';
 
 import {
   StepWrap,
@@ -41,12 +41,13 @@ class Step3 extends React.Component {
             unit="€"
           />
         </InputWrap>
-        <Button
+        <IconButton
           onClick={ () => onNextStep() }
+          icon="arrow-right"
           center
         >
-          See the results
-        </Button>
+          SEE THE RESULTS
+        </IconButton>
         <BackButton
           onClick={ () => onPrevStep() }
           center
