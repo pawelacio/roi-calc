@@ -1,5 +1,6 @@
 import React from 'react';
 import calcBg from '../../assets/roi-calculator-bg.jpg';
+import { getRaport } from './fakeAPI/fakeAPI';
 
 import Welcome from './steps/welcome/welcome.component';
 import Step1 from './steps/step1/step1.component';
@@ -22,7 +23,8 @@ class RoiCalcForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStep: 0,
+      waiting: false,
+      currentStep: 4,
       streamingLevel: '',
       ticketsNumber: 0,
       chargePerTicket: 0,
@@ -37,7 +39,6 @@ class RoiCalcForm extends React.Component {
   }
 
   handlePrevStep = () => {
-    console.log('prev');
     const prevStep = this.state.currentStep - 1;
     this.setState({
       currentStep: prevStep,
@@ -51,34 +52,41 @@ class RoiCalcForm extends React.Component {
   }
 
   onLevelChange = (newLevel) => {
-    console.log(newLevel);
     this.setState({
       streamingLevel: newLevel,
     });
   }
 
   onTicketNumberChange = (newTicketNumber) => {
-    console.log(newTicketNumber);
     this.setState({
       ticketsNumber: newTicketNumber,
     });
   }
 
   onChargePerTicketChange = (newChargePerTicket) => {
-    console.log(newChargePerTicket);
     this.setState({
       chargePerTicket: newChargePerTicket,
     })
   }
 
-  handleSubmit = () => {
+  handleSubmit = async () => {
     const requestObject = {
       streamingLevel: this.state.streamingLevel,
       ticketsNumber: this.state.ticketsNumber,
       chargePerTicket: this.state.chargePerTicket,
     };
     
-    console.log(requestObject);
+    this.handleNextStep();
+    this.setState({
+      waiting: true,
+    });
+
+    const res = await getRaport(requestObject);
+
+    this.setState({
+      raport: res,
+      waiting: false,
+    });
   }
 
   render() {
@@ -120,6 +128,8 @@ class RoiCalcForm extends React.Component {
             <Raport
               currentStep={ currentStep }
               onStartAgain={ this.handleStart }
+              waiting={ this.state.waiting }
+              data={ this.state.raport }
             />
           </FormWrap>
         </FormBackground>
