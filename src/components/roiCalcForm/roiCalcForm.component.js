@@ -21,7 +21,7 @@ class RoiCalcForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStep: 2,
+      currentStep: 4,
     }
   }
 

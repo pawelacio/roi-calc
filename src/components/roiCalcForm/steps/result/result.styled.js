@@ -38,3 +38,8 @@ export const Text = styled.div`
 export const InputWrap = styled.div`
   margin: 20px 0;
 `;
+
+export const FieldWrap = styled.div`
+  width: 500px;
+  margin: 10px 0;
+`;

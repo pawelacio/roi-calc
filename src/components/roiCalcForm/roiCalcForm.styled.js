@@ -18,7 +18,6 @@ export const FormBackground = styled.div`
 export const FormWrap = styled.div`
   position: relative;
   width: 1000px;
-  padding: 100px 0;
   height: 100%;
   margin: auto;
   z-index: 1;
@@ -30,7 +29,7 @@ export const Mask = styled.div`
   left: 0;
   height: 100%;
   width: 100%;
-  opacity: .5;
+  opacity: .7;
   background-image: linear-gradient(30deg, #63bd74, #000000);
   z-index: 0;
 `;
