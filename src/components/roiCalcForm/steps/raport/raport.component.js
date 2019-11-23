@@ -8,18 +8,19 @@ import {
   Title,
   Text,
   FieldWrap,
-} from './result.styled';
-class Result extends React.Component {
+} from './raport.styled';
+
+class Raport extends React.Component {
 
   render() {
     const {
       currentStep,
+      onNextStep,
       onPrevStep,
       onStartAgain,
-      onSubmitForm,
     } = this.props;
 
-    if (currentStep !== 4)
+    if (currentStep !== 5)
       return null;
 
     const heading = ['', 'Home Grown', 'Cleeng'];
@@ -51,28 +52,15 @@ class Result extends React.Component {
             Do you want to understand the logic behind this calculation? Grab your results and we will explain you everything about conversion rates, customer care and operation fees.
           </Text>
         </FieldWrap>
-        <IconButton
-          onClick={ () => onSubmitForm() }
-          icon="arrow-right"
-          center
-        >
-          Find Out Now
-        </IconButton>
         <BackButton
           onClick={ () => onStartAgain() }
           center
         >
           START AGAIN
         </BackButton>
-        <BackButton
-          onClick={ () => onPrevStep() }
-          center
-        >
-          BACK
-        </BackButton>
       </StepWrap>
     )
   }
 }
 
-export default Result;
+export default Raport;

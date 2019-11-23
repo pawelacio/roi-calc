@@ -13,6 +13,11 @@ import {
 
 class Step2 extends React.Component {
 
+  handleChange = (e) => {
+    const { onTicketNumberChange } = this.props;
+    onTicketNumberChange(e.target.value);
+  }
+
   render() {
     const {
       currentStep,
@@ -38,6 +43,7 @@ class Step2 extends React.Component {
           <Input
             type="number"
             placeholder="15,000"
+            onChange={ this.handleChange }
           />
         </InputWrap>
         <IconButton
