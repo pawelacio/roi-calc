@@ -1,6 +1,6 @@
 import React from 'react';
 import SlideNav from '../../../slideNav/slideNav.component';
-import { Button } from '../../../button/button.styled';
+import IconButton from '../../../iconButton/iconButton.component';
 
 import {
   StepWrap,
@@ -42,12 +42,13 @@ class Step1 extends React.Component {
           <Radio text={ 'Mid' } name="streaming-level" />
           <Radio text={ 'Entry' } name="streaming-level" />
         </RadioList>
-        <Button
+        <IconButton
           onClick={ () => onNextStep() }
+          icon="arrow-right"
           center
         >
           Next Question
-        </Button>
+        </IconButton>
         <SlideNav active={ currentStep } stepsNum="3" />
       </StepWrap>
     )

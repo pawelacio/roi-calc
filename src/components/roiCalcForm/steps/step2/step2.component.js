@@ -2,7 +2,7 @@ import React from 'react';
 import SlideNav from '../../../slideNav/slideNav.component';
 import BackButton from '../../../backButton/backButton.component';
 import Input from '../../../input/input.component';
-import { Button } from '../../../button/button.styled';
+import IconButton from '../../../iconButton/iconButton.component';
 
 import {
   StepWrap,
@@ -40,12 +40,13 @@ class Step2 extends React.Component {
             placeholder="15,000"
           />
         </InputWrap>
-        <Button
+        <IconButton
           onClick={ () => onNextStep() }
+          icon="arrow-right"
           center
         >
           Next Question
-        </Button>
+        </IconButton>
         <BackButton
           onClick={ () => onPrevStep() }
           center
