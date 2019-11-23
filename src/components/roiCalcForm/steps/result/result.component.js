@@ -14,9 +14,9 @@ class Result extends React.Component {
   render() {
     const {
       currentStep,
-      onNextStep,
       onPrevStep,
       onStartAgain,
+      onSubmitForm,
     } = this.props;
 
     if (currentStep !== 4)
@@ -52,7 +52,7 @@ class Result extends React.Component {
           </Text>
         </FieldWrap>
         <IconButton
-          onClick={ () => onNextStep() }
+          onClick={ () => onSubmitForm() }
           icon="arrow-right"
           center
         >

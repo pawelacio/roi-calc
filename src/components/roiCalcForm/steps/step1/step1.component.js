@@ -12,6 +12,11 @@ import Radio from '../../../radio/radio.component';
 
 class Step1 extends React.Component {
 
+  handleChange = (e) => {
+    const { onLevelChange } = this.props;
+    onLevelChange(e.target.value);
+  }
+
   render() {
     const {
       currentStep,
@@ -38,9 +43,24 @@ class Step1 extends React.Component {
           What level of streaming quality are you aiming for?
         </Text>
         <RadioList>
-          <Radio text={ 'High' } name="streaming-level" />
-          <Radio text={ 'Mid' } name="streaming-level" />
-          <Radio text={ 'Entry' } name="streaming-level" />
+          <Radio
+            text={ 'High' } 
+            name="streaming-level"
+            value="high"
+            onChange={ this.handleChange }
+          />
+          <Radio 
+            text={ 'Mid' } 
+            name="streaming-level"
+            value="mid"
+            onChange={ this.handleChange }
+          />
+          <Radio 
+            text={ 'Entry' } 
+            name="streaming-level"
+            value="entry"
+            onChange={ this.handleChange }
+          />
         </RadioList>
         <IconButton
           onClick={ () => onNextStep() }

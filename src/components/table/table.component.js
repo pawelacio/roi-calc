@@ -34,7 +34,7 @@ class Table extends React.Component {
         { data.map((dataRow, rowKey) => (
           <Row key={ `data-row-${ rowKey }` }>
             { dataRow.map((dataCell, cellKey) => (
-              <Cell>
+              <Cell key={ `data-row-${ rowKey }-${ cellKey }` }>
                 { dataCell }
               </Cell>
             ))}

@@ -12,6 +12,11 @@ import {
 } from './step3.styled';
 class Step3 extends React.Component {
 
+  handleChange = (e) => {
+    const { onChargePerTicketChange } = this.props;
+    onChargePerTicketChange(e.target.value);
+  }
+
   render() {
     const {
       currentStep,

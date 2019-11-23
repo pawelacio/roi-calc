@@ -8,11 +8,11 @@ import {
 
 class Radio extends React.Component {
   render() {
-    const { text, checked, name } = this.props;
+    const { text } = this.props;
     return(
       <Container>
         { text }
-        <Input name={ name } checked={ checked }/>
+        <Input { ...this.props }/>
         <Checkmark />
       </Container>
     )
