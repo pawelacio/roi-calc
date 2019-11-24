@@ -17,11 +17,15 @@ class Table extends React.Component {
 
     return(
       <Row>
-        { heading.map((item, key) => (
-          <HeadCell key={ `heading-cell-${ key }` }>
-            { item }
-          </HeadCell>
-        )) }
+        { heading && (
+          <>
+            { heading.map((item, key) => (
+              <HeadCell key={ `heading-cell-${ key }` }>
+                { item }
+              </HeadCell>
+            )) }
+          </>
+        )}
       </Row>
     )
   }
@@ -31,15 +35,19 @@ class Table extends React.Component {
 
     return(
       <>
-        { data.map((dataRow, rowKey) => (
-          <Row key={ `data-row-${ rowKey }` }>
-            { dataRow.map((dataCell, cellKey) => (
-              <Cell key={ `data-row-${ rowKey }-${ cellKey }` }>
-                { dataCell }
-              </Cell>
+        { data && (
+          <>
+            { data.map((dataRow, rowKey) => (
+              <Row key={ `data-row-${ rowKey }` }>
+                { dataRow.map((dataCell, cellKey) => (
+                  <Cell key={ `data-row-${ rowKey }-${ cellKey }` }>
+                    { dataCell }
+                  </Cell>
+                ))}
+              </Row>
             ))}
-          </Row>
-        ))}
+          </>
+        )}
       </>
     )
   }

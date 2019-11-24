@@ -24,15 +24,20 @@ class RoiCalcForm extends React.Component {
     super(props);
     this.state = {
       waiting: false,
-      currentStep: 4,
+      currentStep: 0,
       streamingLevel: '',
       ticketsNumber: 0,
       chargePerTicket: 0,
+      maxSteps: 5,
+      availableStep: 1,
     }
   }
 
   handleNextStep = () => {
     const nextStep = this.state.currentStep + 1;
+    console.log(this.state);
+    if (nextStep > this.state.maxSteps || nextStep > this.state.availableStep)
+      return;
     this.setState({
       currentStep: nextStep,
     });
@@ -40,6 +45,8 @@ class RoiCalcForm extends React.Component {
 
   handlePrevStep = () => {
     const prevStep = this.state.currentStep - 1;
+    if (prevStep < 0)
+      return;
     this.setState({
       currentStep: prevStep,
     });
@@ -48,24 +55,37 @@ class RoiCalcForm extends React.Component {
   handleStart = () => {
     this.setState({
       currentStep: 1,
+      availableStep: 1,
+      streamingLevel: '',
+      ticketsNumber: 0,
+      chargePerTicket: 0,
     });
   }
 
   onLevelChange = (newLevel) => {
+    if (!newLevel)
+      return;
     this.setState({
+      availableStep: 2,
       streamingLevel: newLevel,
     });
   }
 
   onTicketNumberChange = (newTicketNumber) => {
+    if (newTicketNumber <= 0)
+      return;
     this.setState({
       ticketsNumber: newTicketNumber,
+      availableStep: 3,
     });
   }
 
   onChargePerTicketChange = (newChargePerTicket) => {
+    if (newChargePerTicket <= 0)
+      return;
     this.setState({
       chargePerTicket: newChargePerTicket,
+      availableStep: 5
     })
   }
 
@@ -76,11 +96,12 @@ class RoiCalcForm extends React.Component {
       chargePerTicket: this.state.chargePerTicket,
     };
     
-    this.handleNextStep();
     this.setState({
       waiting: true,
     });
 
+    this.handleNextStep();
+    
     const res = await getRaport(requestObject);
 
     this.setState({
@@ -97,40 +118,52 @@ class RoiCalcForm extends React.Component {
         <FormBackground path={ calcBg }>
           <Mask/>
           <FormWrap>
-            <Welcome
-              currentStep={ currentStep }
-              onNextStep={ this.handleNextStep }
-              onPrevStep={ this.handlePrevStep }
-            />
-            <Step1
-              currentStep={ currentStep }
-              onNextStep={ this.handleNextStep }
-              onLevelChange={ this.onLevelChange }
-            />
-            <Step2
-              currentStep={ currentStep }
-              onNextStep={ this.handleNextStep }
-              onPrevStep={ this.handlePrevStep }
-              onTicketNumberChange={ this.onTicketNumberChange }
-            />
-            <Step3
-              currentStep={ currentStep }
-              onNextStep={ this.handleNextStep }
-              onPrevStep={ this.handlePrevStep }
-              onChargePerTicketChange={ this.onChargePerTicketChange }
-            />
-            <Result
-              currentStep={ currentStep }
-              onPrevStep={ this.handlePrevStep }
-              onSubmitForm={ this.handleSubmit }
-              onStartAgain={ this.handleStart }
-            />
-            <Raport
-              currentStep={ currentStep }
-              onStartAgain={ this.handleStart }
-              waiting={ this.state.waiting }
-              data={ this.state.raport }
-            />
+            { currentStep === 0 && (
+              <Welcome
+                currentStep={ currentStep }
+                onNextStep={ this.handleNextStep }
+                onPrevStep={ this.handlePrevStep }
+              />
+            )}
+            { currentStep === 1 && (
+              <Step1
+                currentStep={ currentStep }
+                onNextStep={ this.handleNextStep }
+                onLevelChange={ this.onLevelChange }
+              />
+            )}
+            { currentStep === 2 && (
+              <Step2
+                currentStep={ currentStep }
+                onNextStep={ this.handleNextStep }
+                onPrevStep={ this.handlePrevStep }
+                onTicketNumberChange={ this.onTicketNumberChange }
+              />
+            )}
+            { currentStep === 3 && (
+              <Step3
+                currentStep={ currentStep }
+                onNextStep={ this.handleNextStep }
+                onPrevStep={ this.handlePrevStep }
+                onChargePerTicketChange={ this.onChargePerTicketChange }
+              />
+            )}
+            { currentStep === 4 && (
+              <Result
+                currentStep={ currentStep }
+                onPrevStep={ this.handlePrevStep }
+                onSubmitForm={ this.handleSubmit }
+                onStartAgain={ this.handleStart }
+              />
+            )}
+            { currentStep === 5 && (
+              <Raport
+                currentStep={ currentStep }
+                onStartAgain={ this.handleStart }
+                waiting={ this.state.waiting }
+                data={ this.state.raport }
+              />
+            )}
           </FormWrap>
         </FormBackground>
       </Container>
