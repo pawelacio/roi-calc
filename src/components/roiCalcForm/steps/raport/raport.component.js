@@ -37,10 +37,12 @@ class Raport extends React.Component {
               Based on your entries, here is a ready raport for You.
             </Text>
             <FieldWrap>
-              <Table 
-                heading={ data.heading }
-                data={ data.data }
-              />
+              { data && (
+                <Table 
+                  heading={ data.heading }
+                  data={ data.data }
+                />
+              )}
             </FieldWrap>
             <FieldWrap>
               <Text small>
