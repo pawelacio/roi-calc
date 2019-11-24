@@ -13,6 +13,7 @@ import {
 class Step3 extends React.Component {
 
   handleChange = (e) => {
+    console.log(e.target.value)
     const { onChargePerTicketChange } = this.props;
     onChargePerTicketChange(e.target.value);
   }
@@ -42,6 +43,7 @@ class Step3 extends React.Component {
           <Input
             type="number"
             placeholder="19.00"
+            onChange={ this.handleChange }
             align="right"
             unit="€"
           />

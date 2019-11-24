@@ -24,15 +24,20 @@ class RoiCalcForm extends React.Component {
     super(props);
     this.state = {
       waiting: false,
-      currentStep: 4,
+      currentStep: 0,
       streamingLevel: '',
       ticketsNumber: 0,
       chargePerTicket: 0,
+      maxSteps: 5,
+      availableStep: 1,
     }
   }
 
   handleNextStep = () => {
     const nextStep = this.state.currentStep + 1;
+    console.log(this.state);
+    if (nextStep > this.state.maxSteps || nextStep > this.state.availableStep)
+      return;
     this.setState({
       currentStep: nextStep,
     });
@@ -40,6 +45,8 @@ class RoiCalcForm extends React.Component {
 
   handlePrevStep = () => {
     const prevStep = this.state.currentStep - 1;
+    if (prevStep < 0)
+      return;
     this.setState({
       currentStep: prevStep,
     });
@@ -48,24 +55,38 @@ class RoiCalcForm extends React.Component {
   handleStart = () => {
     this.setState({
       currentStep: 1,
+      availableStep: 1,
+      streamingLevel: '',
+      ticketsNumber: 0,
+      chargePerTicket: 0,
     });
   }
 
   onLevelChange = (newLevel) => {
+    if (!newLevel)
+      return;
     this.setState({
+      availableStep: 2,
       streamingLevel: newLevel,
     });
   }
 
   onTicketNumberChange = (newTicketNumber) => {
+    if (newTicketNumber <= 0)
+      return;
     this.setState({
       ticketsNumber: newTicketNumber,
+      availableStep: 3,
     });
   }
 
   onChargePerTicketChange = (newChargePerTicket) => {
+    console.log(newChargePerTicket);
+    if (newChargePerTicket <= 0)
+      return;
     this.setState({
       chargePerTicket: newChargePerTicket,
+      availableStep: 5
     })
   }
 
@@ -76,11 +97,12 @@ class RoiCalcForm extends React.Component {
       chargePerTicket: this.state.chargePerTicket,
     };
     
-    this.handleNextStep();
     this.setState({
       waiting: true,
     });
 
+    this.handleNextStep();
+    
     const res = await getRaport(requestObject);
 
     this.setState({
